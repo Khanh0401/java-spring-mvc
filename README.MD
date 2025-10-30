@@ -1,4 +1,4 @@
-# 🚀 Java Spring MVC - Xây Dựng FullStack Website với Spring Boot
+# 🚀 Java Spring MVC - Xây Dựng FullStack Website với Spring Boot (UPDATE)
 
 ## 📖 How to Use This Project?
 
