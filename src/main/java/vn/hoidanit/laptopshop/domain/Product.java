@@ -1,7 +1,9 @@
 package vn.hoidanit.laptopshop.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,23 +11,51 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
+
+    @NotNull
+    @DecimalMin(value = "0", inclusive = false, message = "Price must be greater than 0")
     private double price;
+
     private String image;
+
+    @NotNull
+    @NotEmpty(message = "Detail description cannot be empty")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
+
+    @NotNull
+    @NotEmpty(message = "Short description cannot be empty")
     private String shortDesc;
+
+    @NotNull
+    @Min(value = 1, message = "Quantity must be greater than 0")
     private long quantity;
+
     private long sold;
+
+    @NotNull
+    @NotEmpty(message = "Factory cannot be empty")
     private String factory;
+
+    @NotNull
+    @NotEmpty(message = "Target cannot be empty")
     private String target;
 
     // @OneToMany(mappedBy = "product")
